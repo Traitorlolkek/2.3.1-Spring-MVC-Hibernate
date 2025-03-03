@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+<p>Users:</p>
+
+<div th:each="user : ${users}" style="display: flex; align-items: center; gap: 10px;">
+    <p th:text="${user.toString}"></p>
+    <a th:href="@{/users/{id}/edit(id=${user.getId()})}" class="btn btn-primary">Edit</a>
+    <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+        <input type="submit" value="Delete">
+    </form>
+</div>
+<p th:if="${#lists.isEmpty(users)}">No users found.</p>
+<a th:href="@{/users/new}" class="btn btn-primary">Create new user</a>
+
+</body>
+</html>
