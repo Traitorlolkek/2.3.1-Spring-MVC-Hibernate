@@ -18,14 +18,14 @@ public class UserController {
     }
 
     @GetMapping()
-    public String users(Model model) {
-        model.addAttribute("users", userService.findAll());
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
 
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String getFormNewUser(@ModelAttribute("user") User user) {
         return "userAdd";
     }
 
@@ -35,14 +35,14 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    @DeleteMapping("/delete")
+    public String deleteUser(@RequestParam("id") int id) {
         userService.delete(id);
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}/edit")
-    public String editUser(@PathVariable("id") int id, Model model) {
+    @GetMapping("/edit")
+    public String getFormEditUser(@RequestParam("id") int id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
         return "userEdit";

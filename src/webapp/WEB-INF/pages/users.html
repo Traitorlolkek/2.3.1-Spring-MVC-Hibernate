@@ -10,8 +10,8 @@
 
 <div th:each="user : ${users}" style="display: flex; align-items: center; gap: 10px;">
     <p th:text="${user.toString}"></p>
-    <a th:href="@{/users/{id}/edit(id=${user.getId()})}" class="btn btn-primary">Edit</a>
-    <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+    <a th:href="@{/users/edit(id=${user.getId()})}" class="btn btn-primary">Edit</a>
+    <form th:method="DELETE" th:action="@{/users/delete(id=${user.getId()})}">
         <input type="submit" value="Delete">
     </form>
 </div>
